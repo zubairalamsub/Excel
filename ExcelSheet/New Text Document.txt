@@ -1,0 +1,55 @@
+USE [Excel]
+GO
+/****** Object:  StoredProcedure [dbo].[InsertEmployee]    Script Date: 8/21/2021 3:45:10 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER Procedure [dbo].[InsertEmployee]
+(
+ 
+ @EmplyeeType as InsertEmpType readonly
+)
+AS
+BEGIN
+INSERT INTO [dbo].[Employee]
+           ([EmplyeeId]
+           ,[Name]
+           ,[Score])
+     Select
+	 EmplyeeId,
+	 Name,
+	 Score
+	 From
+     @EmplyeeType  
+END
+
+USE [Excel]
+GO
+/****** Object:  StoredProcedure [dbo].[InsertSalary]    Script Date: 8/21/2021 3:46:27 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[InsertSalary]
+(
+@SalaryType as InsertEmpSalaryType readonly
+)
+AS
+BEGIN
+INSERT INTO [dbo].[Salary]
+           ([EmplyeeId]
+           ,[Salary]
+           ,[Bonous])
+     Select
+           EmplyeeId,
+           Salary,
+           Bonous
+		   From 
+		   @SalaryType
+
+		   
+END
+
+
+
